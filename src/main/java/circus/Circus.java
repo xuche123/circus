@@ -6,6 +6,10 @@ import circus.animal.Parrot;
 import circus.stuff.Cannon;
 import circus.stuff.Equipment;
 import circus.stuff.Ladder;
+import java.util.ArrayList;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class Circus {
     private static Animal[] animals = {
@@ -40,8 +44,25 @@ public class Circus {
     }
 
     public static void main(String[] args) {
-        makeAnimalsTalk();
-        System.out.println("Total value of equipments " + calculateValue(equipments));
-        System.out.println("Total value of animals " + calculateValue(animals));
+        //makeAnimalsTalk();
+        //System.out.println("Total value of equipments " + calculateValue(equipments));
+        //System.out.println("Total value of animals " + calculateValue(animals));
+        //System.out.println(animals.length);
+        ArrayList<Animal> animalArrayList = new ArrayList<>(Arrays.asList(animals));
+        animalArrayList.add(new Duck("Goose"));
+        animalArrayList.add(new Parrot("Dolly"));
+
+        Duck louie = new Duck("louie");
+        animalArrayList.add(louie);
+
+        for (Animal a: animalArrayList) {
+            System.out.println(a);
+        }
+
+        System.out.println("Number of animals: " + animalArrayList.size());
+        System.out.println("index of Louie: " + animalArrayList.indexOf(louie));
+
+        animalArrayList.sort(Animal.AnimalNameComparator);
+        animalArrayList.remove(louie);
     }
 }
